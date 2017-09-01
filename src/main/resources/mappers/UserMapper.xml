@@ -138,6 +138,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.User" >
     update mmall_user
     set username = #{username,jdbcType=VARCHAR},
@@ -151,4 +152,11 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="checkUsername" parameterType="string" resultType="int">
+      select count(1) FROM mmall_user where username=#{username};
+  </select>
+
+  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
+    select User from mmall_user where username=#{username} and password=#{password}
+  </select>
 </mapper>
