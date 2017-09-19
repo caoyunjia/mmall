@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>登录页面</title>
     <link href="css/bootstrap.css"/>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
 <h1>登录页面</h1>
-<form class="form-signin" role="form">
+<form class="form-signin"  role="form" id="loginForm">
     <div>
         <input type="text" name="username" id="username"  placeholder="请输入账号/手机号"  ></div>
     <div id="pwd">
-        <input type="password" name="password" id="password" placeholder="请输入密码" autocomplete="off" maxlength="16"></div>
+        <input type="password" name="password" id="password" placeholder="请输入密码" autocomplete="off"></div>
     <div id="yzm" hidden="true">
-      <input type="text" id="vcode" name="vcode" class="form-control yzm" style="width: 50%" placeholder="验证码" autocomplete="off" maxlength="4">
+      <input type="text" id="vcode" name="vcode" class="form-control yzm" style="width: 50%" placeholder="验证码" autocomplete="off" >
         <img id="vcodeImg" style="float: right; margin-top: -38px; height: 27px; width: 100px;" src="img/checkNum.png" alt=""/>
     </div>
     <button type="submit">登录</button>
@@ -28,7 +28,27 @@
     </div>
 </form>
 <script>
+$(function () {
+    $("#loginForm").validate({
+        rules:{
+            username:{
+                required:true,
+                minlength:2
+            },
+            password:{
+                required:true,
+                minlength:6
+            }
+        }
+        ,message:{
 
+
+        }
+
+        }
+
+    )
+})
 
 </script>
 </body>
