@@ -40,11 +40,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> register(User user) {
         //检查用户名是否存在
-        ServerResponse<String> checkUsername = checkValid(Const.USERNAME, user.getUsername());
+        ServerResponse<String> checkUsername = checkValid(user.getUsername(),Const.USERNAME);
         if(!checkUsername.isSuccess()){
             return checkUsername;
         }
-        ServerResponse<String> checkEmail = checkValid(Const.EMAIL, user.getEmail());
+        ServerResponse<String> checkEmail = checkValid( user.getEmail(),Const.EMAIL);
         if(!checkEmail.isSuccess()){
             return checkEmail;
         }
@@ -83,7 +83,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> selectQuestion(String username) {
         //首先检查用户是否存在
-        ServerResponse<String> checkValid = checkValid(Const.USERNAME, username);
+        ServerResponse<String> checkValid = checkValid(username,Const.USERNAME);
         if(checkValid.isSuccess()){
             //如果成功,证明没有改用户
             return ServerResponse.createByErrorMessage("用户不存在");
@@ -114,7 +114,7 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createByErrorMessage("参数错误");
         }
         //校验用户名是否存在
-        ServerResponse<String> checkUsername = checkValid(Const.USERNAME, username);
+        ServerResponse<String> checkUsername = checkValid(username,Const.USERNAME);
         if (checkUsername.isSuccess()){
             return ServerResponse.createByErrorMessage("用户名不存在");
         }

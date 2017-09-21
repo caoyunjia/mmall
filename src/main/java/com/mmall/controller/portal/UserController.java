@@ -48,7 +48,7 @@ public class UserController {
      * @param session
      * @return 返回响应信息
      */
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> logout(HttpSession session) {
         //将当前的session移除
@@ -102,7 +102,7 @@ public class UserController {
      * @param username
      * @return
      */
-    @RequestMapping(value = "forgetGetQuestion", method = RequestMethod.GET)
+    @RequestMapping(value = "forgetGetQuestion", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetGetQuestion(String username){
             return iUserService.selectQuestion(username);
@@ -115,7 +115,7 @@ public class UserController {
      * @param answer
      * @return
      */
-    @RequestMapping(value = "forgetCheckAnswer", method = RequestMethod.GET)
+    @RequestMapping(value = "forgetCheckAnswer", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetCheckAnswer(String username,String question,String answer){
         return iUserService.checkAnswer(username,question,answer);
@@ -128,7 +128,7 @@ public class UserController {
      * @param token
      * @return
      */
-    @RequestMapping(value = "forgetResetPassword", method = RequestMethod.GET)
+    @RequestMapping(value = "forgetResetPassword", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetResetPassword(String username,String passwordNew,String token){
         return iUserService.forgetResetPassword(username,passwordNew,token);
@@ -141,7 +141,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "resetPassword", method = RequestMethod.GET)
+    @RequestMapping(value = "resetPassword", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> resetPassword(String passwordOld,String passwordNew,HttpSession session){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -156,7 +156,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "updateInformation", method = RequestMethod.GET)
+    @RequestMapping(value = "updateInformation", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> updateInformation(User user,HttpSession session){
         User loginUser = (User)session.getAttribute(Const.CURRENT_USER);
@@ -176,7 +176,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "getInformation", method = RequestMethod.GET)
+    @RequestMapping(value = "getInformation", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> getInformation(HttpSession session){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
